@@ -7,6 +7,9 @@ python:
   - "3.6"
   - "nightly"
 
+dist: trusty
+sudo: required
+
 addons:
   apt:
     packages:
