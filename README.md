@@ -24,7 +24,7 @@ If you have trouble running this software, please open an issue on Github:
 
 * Any Linux distribution that use `udev` (Debian, Ubuntu, ArchLinux,
   Fedora,...)
-* [`pyudev`](https://pypi.python.org/pypi/pyudev)
+* [pyusb 1.x](https://pypi.python.org/pypi/pyusb/1.0.0)
 
 
 ## Installation

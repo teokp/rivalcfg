@@ -51,8 +51,8 @@ def mouse(monkeypatch):
 
 
 def _get_written_bytes(mouse):
-    mouse._device.seek(0)
-    result = mouse._device.read()
+    mouse._device.device.seek(0)
+    result = mouse._device.device.read()
     if result[0:1] == b"\x00":
         result = result[1:]
     return result

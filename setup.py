@@ -37,7 +37,7 @@ elif os.path.isfile("README.md"):
 
 setup(
     name="rivalcfg",
-    version="2.5.2",
+    version="2.5.3",
     description="Configure SteelSeries Rival gaming mice",
     url="https://github.com/flozz/rivalcfg",
     license="WTFPL",
@@ -52,7 +52,7 @@ setup(
     packages=find_packages(),
 
     install_requires=[
-        "hidapi>=0.7.99.post20"
+        "pyusb>=1.0.0,<2.0.0"
     ],
 
     entry_points={

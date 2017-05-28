@@ -15,10 +15,11 @@ class Mouse:
         profile -- the mouse profile (rivalcfg.profiles.*)
         """
         self.profile = profile
-        self._device = usbhid.open_device(
+        self._device = usbhid.HidDevice(
                 profile["vendor_id"],
                 profile["product_id"],
                 profile["interface_number"])
+        self._device.open()
 
     def set_default(self):
         """Sets all option to their factory values."""
@@ -26,17 +27,17 @@ class Mouse:
             if "default" in self.profile["commands"][command]:
                 getattr(self, command)(self.profile["commands"][command]["default"])
 
-    def _device_write(self, *bytes_):
+    def _device_write(self, bytes_, wValue=0x0200):
         """Writes bytes to the device.
 
         Arguments:
-        *bytes_ -- bytes to write
+        bytes_ -- bytes to write
+
+        Keywork arguments:
+        wValue -- the wValue part of the request (Report Type and Report ID, default=0x0200)
         """
-        # XXX fixes issue with Rival 300 new firmware (#5, #25, #28)
-        bytes_ = helpers.merge_bytes(0x00, *bytes_)
-        if debug.DEBUG:
-            debug.log_bytes_hex("Mouse._device_write", bytes_)
-        self._device.write(bytearray(bytes_))
+        debug.log_bytes_hex("Mouse._device_write", bytes_)
+        self._device.set_report(bytearray(bytes_), wValue=wValue)
 
     def __getattr__(self, name):
         if not name in self.profile["commands"]:
