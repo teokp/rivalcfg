@@ -44,6 +44,7 @@ class Mouse:
             raise AttributeError("There is no command named '%s'" % name)
 
         command = self.profile["commands"][name]
+        wValue = command["wValue"] if "wValue" in command else 0x0200
         handler = "%s_handler" % str(command["value_type"]).lower()
 
         if not hasattr(command_handlers, handler):
@@ -51,7 +52,7 @@ class Mouse:
 
         def _exec_command(*args):
             bytes_ = getattr(command_handlers, handler)(command, *args)
-            self._device_write(bytes_)
+            self._device_write(bytes_, wValue=wValue)
 
         return _exec_command
 
