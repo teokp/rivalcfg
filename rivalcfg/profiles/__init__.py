@@ -9,6 +9,7 @@ from .rival300hpomen import rival300hpomen
 from .rival500 import rival500
 from .rival600 import rival600
 from .hotssenseiraw import hotssenseiraw
+from .senseiraw import senseiraw
 
 mice_profiles = [
     rival,
@@ -22,4 +23,5 @@ mice_profiles = [
     rival500,
     rival600,
     hotssenseiraw,
+    senseiraw,
 ]
